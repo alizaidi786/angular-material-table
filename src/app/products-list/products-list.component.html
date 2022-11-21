@@ -1,0 +1,104 @@
+<mat-card>
+  <div class="table-container">
+    <div class="text-center"><h4 class="title">Products</h4></div>
+    <mat-spinner *ngIf="!dataSource" [diameter]="50"></mat-spinner>
+    <div class="sticky-table" tabindex="0" *ngIf="dataSource">
+      <mat-form-field>
+        <mat-label>Filter</mat-label>
+        <input
+          matInput
+          (keyup)="applyFilter($event)"
+          placeholder="Start entering..."
+          #input
+        />
+      </mat-form-field>
+      <table
+        #table
+        mat-table
+        [dataSource]="dataSource"
+        matSort
+        cdkDropList
+        (cdkDropListDropped)="drop($event)"
+        (matSortChange)="sortChange($event)"
+      >
+        <!--Id Column-->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>Id</th>
+          <td mat-cell *matCellDef="let element" class="id-column">
+            <div cdkDragHandle>
+              <i class="material-icons">drag_indicator</i>
+            </div>
+            <div>{{ element.id }}</div>
+          </td>
+        </ng-container>
+
+        <!-- Category Column -->
+        <ng-container matColumnDef="category" sticky>
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+            mat-sort-header
+            class="sticky-column"
+          >
+            Category
+          </th>
+
+          <td mat-cell class="npk-cell" *matCellDef="let element">
+            {{ element.category | titlecase }}
+          </td>
+        </ng-container>
+
+        <!-- Title Column -->
+        <ng-container matColumnDef="title">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Title</th>
+          <td mat-cell class="npk-cell" *matCellDef="let element">
+            <span *ngIf="element.title.length > 18"
+              >{{ element.title | slice: 0:18 }}...</span
+            >
+            <span *ngIf="18 >= element.title.length">{{ element.title }}</span>
+          </td>
+        </ng-container>
+
+        <!-- Price Column -->
+        <ng-container matColumnDef="price">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Price $</th>
+          <td mat-cell class="npk-cell" *matCellDef="let element">
+            {{ element.price }}
+          </td>
+        </ng-container>
+        
+        <!-- Price in dollar Column -->
+        <ng-container matColumnDef="priceinrs">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Price Rs</th>
+          <td mat-cell class="npk-cell" *matCellDef="let element">
+            {{ element.price * 85 | number }}
+          </td>
+        </ng-container>
+
+        <!-- Description Column -->
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef>Description</th>
+          <td mat-cell class="npk-cell" *matCellDef="let element">
+            {{ element.description | slice: 0:97 }}...
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr
+          mat-row
+          *matRowDef="let row; columns: displayedColumns"
+          cdkDrag
+          [cdkDragDisabled]="isDraggable"
+          (click)="clickedRow(row)"
+        ></tr>
+      </table>
+    </div>
+  </div>
+
+  <mat-paginator
+    id="paginate"
+    #paginator
+    [pageSizeOptions]="[5, 10, 15, 20]"
+    showFirstLastButtons
+  ></mat-paginator>
+</mat-card>

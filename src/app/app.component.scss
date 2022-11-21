@@ -1,0 +1,25 @@
+.inline-div{
+    display: inline;
+    background-color: blue;
+    color: white;
+    position: relative;
+    top: 50%;
+    left: 50%;
+}
+// .center-divs{
+//     display: flex;
+//     width: 100;
+// }
+.red {
+    background-color: red;
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    border: 1px solid green;
+}
+.blue {
+    width: 49px;
+    display: inline-block;
+    background-color: blue;
+    height: 100%;
+}

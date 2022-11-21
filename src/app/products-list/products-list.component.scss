@@ -1,0 +1,58 @@
+table {
+    width: 1500px;
+    margin: 0 auto;
+  }
+
+  .mat-spinner{
+    margin: 0 auto;
+    width: 50%;
+  }
+
+  .table-container{
+    display: flex;
+    margin-top: 5em;
+    justify-content: center;
+    width: 100%;
+    flex-direction: column;
+  }
+
+  mat-header-cell{
+    font-weight: bold;
+  }
+  .sticky-table{
+    width: 100%;
+    overflow: auto;
+    margin: 0 auto;
+  }
+  .id-column{
+    padding: 0 !important;
+    height: 8vh;
+    align-items: center;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+  }
+  .npk-cell{
+    padding-right: 30px;
+    padding-left: 10px ;
+    height: 8vh;
+  }
+  tr:hover{
+    cursor: pointer;
+  }
+  th{
+    background-color:blue;
+    color: white;
+    padding-left: 10px !important;
+  }
+ .sticky-column{
+  background-color: darkblue;
+  padding-left: 10px;
+ }
+ .text-center{
+  text-align: center;
+ }
+ mat-card{
+  width: 80%;
+  margin: 0 auto;
+ }

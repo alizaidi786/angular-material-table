@@ -1,0 +1,36 @@
+<div class="container">
+  <div *ngIf="noDataMsg">{{ noDataMsg }}</div>
+  <div *ngIf="productData" class="view-card">
+    <button mat-raised-button (click)="goBack()" color="primary">Back</button>
+    <p class="fw-bold">Title:</p>
+    <p>{{ productData.title }}</p>
+    <div class="image-container">
+      <div>
+        <p class="fw-bold">Category:</p>
+        <p>{{ productData.category }}</p>
+        <p class="fw-bold">Price:</p>
+        <p>{{ productData.price }}</p>
+      </div>
+      <div>
+        <img
+          src="{{ productData.image }}"
+          width="150px"
+          height="150px"
+          alt="Product image"
+        />
+      </div>
+    </div>
+
+    <p class="fw-bold">Description:</p>
+    <p>{{ productData.description }}</p>
+    <p class="fw-bold">Rating:</p>
+    <div class="rating">
+      <p>
+        Rate: <span>{{ productData.rating.rate }}</span>
+      </p>
+      <p style="margin-left: 2rem">
+        Count: <span>{{ productData.rating.count }}</span>
+      </p>
+    </div>
+  </div>
+</div>
